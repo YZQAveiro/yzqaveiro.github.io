@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yzqaveiro.github.io</id>
     <title>YZQAveiro</title>
-    <updated>2022-04-26T13:21:43.881Z</updated>
+    <updated>2022-04-26T13:24:56.632Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yzqaveiro.github.io"/>
     <link rel="self" href="https://yzqaveiro.github.io/atom.xml"/>
@@ -19,14 +19,14 @@
         <content type="html"><![CDATA[<p><img src="https://yzqaveiro.github.io/post-images/1650977806552.png" alt="" loading="lazy"><br>
 <ul class="markdownIt-TOC">
 <li><a href="#1-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E5%91%BD%E5%90%8D">1. 命名空间：避免重复命名</a></li>
-<li><a href="#2-const">2. <code>const</code></a></li>
-<li><a href="#3-newdelete">3.  <code>new/delete</code></a></li>
+<li><a href="#2-const">2. const</a></li>
+<li><a href="#3-newdelete">3.  new/delete</a></li>
 <li><a href="#4-%E5%BC%95%E7%94%A8">4.  引用</a></li>
 <li><a href="#5-%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2">5.  强制转换</a></li>
 <li><a href="#6-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD">6.  函数重载</a></li>
 <li><a href="#7-%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0">7.  默认参数</a></li>
-<li><a href="#8-bool%E7%B1%BB%E5%9E%8B">8.  <code>bool</code>类型</a></li>
-<li><a href="#9-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0-inline">9. 内联函数 <code>inline</code></a></li>
+<li><a href="#8-bool-%E7%B1%BB%E5%9E%8B">8.  bool 类型</a></li>
+<li><a href="#9-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0-inline">9. 内联函数 inline</a></li>
 <li><a href="#10-%E5%BC%82%E5%B8%B8%E5%AE%89%E5%85%A8">10. 异常安全</a></li>
 </ul>
 </p>
@@ -34,7 +34,7 @@
 <p>(1) 命名空间的定义<br>
 <strong>命名空间</strong>是一个由用户自己定义的作用域，在不同作用域中可以定义相同名字的变量或函数，这些变量或函数被称为<strong>实体</strong>（也可以是常量、结构体、类等），其可见域始于实体创建，终于所在命名空间结束。</p>
 <p>(2) 命名空间的使用方式</p>
-<p>① using 编译指令</p>
+<p>① <code>using</code> 编译指令</p>
 <pre><code class="language-c++">using namespace std; // 标准命名空间
 </code></pre>
 <p>② 作用域限定符</p>
@@ -43,7 +43,7 @@
 	std::cout &lt;&lt; &quot;Hello&quot; &lt;&lt; std::endl; // 使用 :: 符号来调用命名空间内的实体    
 }
 </code></pre>
-<p>③ using 声明机制</p>
+<p>③ <code>using</code> 声明机制</p>
 <pre><code class="language-c++">using std::cout;
 using std::endl;
 int main()
@@ -63,7 +63,7 @@ void func()
     
 }
 </code></pre>
-<h1 id="2-const">2. <code>const</code></h1>
+<h1 id="2-const">2. const</h1>
 <p>(1) <code>const</code> 修饰变量</p>
 <pre><code class="language-c++">const int num1 = 10;
 int const num2 = 20;
@@ -85,7 +85,7 @@ p3 = &amp;num2; // 错误，不能改变指针的指向
 <p>③ <code>const</code>指针常量</p>
 <pre><code class="language-c++">const int* const p4 = &amp;num1; // 所指内容的值和指针的指向均不能改变
 </code></pre>
-<h1 id="3-newdelete">3.  <code>new/delete</code></h1>
+<h1 id="3-newdelete">3.  new/delete</h1>
 <p>(1) 开辟一个元素的空间</p>
 <pre><code class="language-c++">int* p = new int(1); // 将整型指针所指的值初始化为括号内的值
 </code></pre>
@@ -189,12 +189,12 @@ C++ 源码中，如需某些代码按 C 的方式调用，必须将其放入 <co
 <pre><code class="language-c++">void func1(int a = 0, int b = 0, int c = 0, int d = 0);
 void func1(int a = 0, int b, int c, int d = 0); // 错误，一旦设置默认参数，后续参数均需设置默认参数
 </code></pre>
-<h1 id="8-bool类型">8.  <code>bool</code>类型</h1>
+<h1 id="8-bool-类型">8.  bool 类型</h1>
 <p><code>true: 1 false: 0</code><br>
 ① 任何数字或指针值都可以隐式转换为 <code>bool</code> 值<br>
 ② 任何非零值都将转换为 true, 而零值转换为 false<br>
 ③ 一个 <code>bool</code> 类型的值所占内存大小为 1</p>
-<h1 id="9-内联函数-inline">9. 内联函数 <code>inline</code></h1>
+<h1 id="9-内联函数-inline">9. 内联函数 inline</h1>
 <p>(1) 内联函数的定义<br>
 内联函数是 C++ 特有的特性，用于降低程序的运行时间。在编译阶段，编译器将内联函数的定义体替代函数调用语句，从而实现类似带参数宏定义的效果<br>
 (2) 将内联函数放入头文件<br>
