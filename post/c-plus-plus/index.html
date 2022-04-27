@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://yzqaveiro.github.io/favicon.ico?v=1650979494128">
+<link rel="shortcut icon" href="https://yzqaveiro.github.io/favicon.ico?v=1651041311866">
 <link rel="stylesheet" href="https://yzqaveiro.github.io/styles/main.css">
 
 
@@ -30,9 +30,7 @@
 8.  bool 类型
 9. 内联函数 inline
 10. 异常安全
-
-
-1. 命名空间..." />
+11. C/C++..." />
     <meta name="keywords" content="C++" />
   </head>
   <body>
@@ -42,7 +40,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://yzqaveiro.github.io">
-        <img src="https://yzqaveiro.github.io/images/avatar.png?v=1650979494128" class="site-logo">
+        <img src="https://yzqaveiro.github.io/images/avatar.png?v=1651041311866" class="site-logo">
         <h1 class="site-title">YZQAveiro</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -120,6 +118,7 @@
 <li><a href="#8-bool-%E7%B1%BB%E5%9E%8B">8.  bool 类型</a></li>
 <li><a href="#9-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0-inline">9. 内联函数 inline</a></li>
 <li><a href="#10-%E5%BC%82%E5%B8%B8%E5%AE%89%E5%85%A8">10. 异常安全</a></li>
+<li><a href="#11-cc-%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2">11. C/C++ 风格字符串</a></li>
 </ul>
 </p>
 <h1 id="1-命名空间避免重复命名">1. 命名空间：避免重复命名</h1>
@@ -288,7 +287,7 @@ void func1(int a = 0, int b, int c, int d = 0); // 错误，一旦设置默认�
 ③ 一个 <code>bool</code> 类型的值所占内存大小为 1</p>
 <h1 id="9-内联函数-inline">9. 内联函数 inline</h1>
 <p>(1) 内联函数的定义<br>
-内联函数是 C++ 特有的特性，用于降低程序的运行时间。在编译阶段，编译器将内联函数的定义体替代函数调用语句，从而实现类似带参数宏定义的效果<br>
+内联函数是 C++ 特有的特性，用于降低程序的运行时间。在编译阶段，编译器将内联函数的定义体替代函数调用语句，从而实现类似带参数宏定义的效果。<br>
 (2) 将内联函数放入头文件<br>
 <code>inline</code> 关键字必须与函数定义体放在一起才能构成内联函数，即：</p>
 <pre><code class="language-c++">// 原则：声明前不加 inline, 定义前加 inline
@@ -296,12 +295,98 @@ inline void func(int x, int y){
 	// function
 }
 </code></pre>
+<p>(3) 使用 <code>inline</code> 函数的时机<br>
+① 需要反复调用且结构较为简单，不包含 <code>for</code>, <code>while</code>, <code>switch</code>以及递归等复杂结构的函数<br>
+② 作为类的接口函数读写类的私有或保护成员</p>
+<blockquote>
+<p>常考题：inline 和宏定义的区别？<br>
+① 内联函数会被放入符号表中，在编译阶段展开；宏定义是简单的字符串替换，在预处理阶段展开<br>
+② 内联函数拥有类型检测、语法判断等普通函数特性</p>
+</blockquote>
 <h1 id="10-异常安全">10. 异常安全</h1>
 <p>C++ 处理异常的三个关键字：<code>try</code>, <code>catch</code>, <code>throw</code><br>
 (1) <code>throw</code>: 问题出现时，程序通过使用 <code>throw</code> 抛出异常<br>
 格式：throw [表达式];</p>
 <p>(2) try-catch 语句块：标识特定的异常并进行捕获<br>
-// 基本流程：执行 <code>try</code> 块中的语句 --&gt; 如果执行的过程中没有异常拋出，那么执行完后就执行最后一个 <code>catch</code> 块后面的语句，所有 <code>catch</code> 块中的语句都不会被执行；如果 <code>try</code> 块执行的过程中拋出了异常，那么拋出异常后立即跳转到第一个异常类型和拋出的异常类型匹配的 <code>catch</code> 块中执行（称作异常被该 <code>catch</code> 块捕获），执行完后再跳转到最后一个 <code>catch</code> 块后面继续执行</p>
+基本流程：执行 <code>try</code> 块中的语句 --&gt; 如果执行的过程中没有异常拋出，那么执行完后就执行最后一个 <code>catch</code> 块后面的语句，所有 <code>catch</code> 块中的语句都不会被执行；如果 <code>try</code> 块执行的过程中拋出了异常，那么拋出异常后立即跳转到第一个异常类型和拋出的异常类型匹配的 <code>catch</code> 块中执行（称作异常被该 <code>catch</code> 块捕获），执行完后再跳转到最后一个 <code>catch</code> 块后面继续执行</p>
+<pre><code class="language-c++">try{
+    // function...
+}catch(std::exception&amp; e){
+    cerr &lt;&lt; e.what() &lt;&lt; endl;
+}
+</code></pre>
+<h1 id="11-cc-风格字符串">11. C/C++ 风格字符串</h1>
+<p>(1) C 风格字符串<br>
+C 风格字符串是以 '\0' 为结尾的<strong>字符数组</strong>， 常用的字符串处理函数有：</p>
+<pre><code class="language-c">// 返回 str 的长度，不包括 null 结束符
+size_t strlen( const char *str ); 
+
+// 比较lhs和rhs是否相同。lhs等于rhs,返回0; lhs大于rhs，返回正数; lhs小于rhs，返回负数
+int strcmp( const char *lhs, const char *rhs );
+int strncmp( const char *lhs, const char *rhs, size_t count );
+
+// 在 str 中查找首次出现 ch 字符的位置；查找不到，返回空指针
+char *strchr( const char *str, int ch );
+
+// 在 str 中查找首次出现子串 substr 的位置；查找不到，返回空指针
+char *strstr( const char* str, const char* substr );
+
+// 字符控制函数 (修改式操作)
+char *strcpy(char *dest, const char *src); // 将 src 复制给 dest, 返回 dest
+char *strncpy(char *dest, const char *src, size_t count);
+char *strcat( char *dest, const char *src ); // 拼接
+char *strncat( char *dest, const char *src, size_t count );
+
+// memset 的取代方案
+void *memset( void *dest, int ch, size_t count ); // memset(str, 0, sizeof(str));
+void* memcpy( void *dest, const void *src, size_t count );
+extern void bzero (void *__s, size_t __n);
+</code></pre>
+<p>(2) C++风格字符串：<code>std::string</code><br>
+① <code>string</code> 对象的构造<br>
+<strong>注意：每种构造函数的最后一个隐式参数均被认为是空间配置器，未自定义时设为默认</strong></p>
+<ol>
+<li>默认构造函数，生成一个空字符串</li>
+</ol>
+<pre><code class="language-c++">string(); // 大小为 0, 容量未指定
+</code></pre>
+<ol start="2">
+<li>通过 C 风格字符串构造一个 string 对象</li>
+</ol>
+<pre><code class="language-c++">string(const char* rhs);
+</code></pre>
+<ol start="3">
+<li>通过 rhs 的前 n 个字符构造一个 string 对象</li>
+</ol>
+<pre><code class="language-c++">string(const char* rhs, size_type n);
+</code></pre>
+<ol start="4">
+<li>复制构造函数</li>
+</ol>
+<pre><code class="language-c++">string(const string&amp; rhs);
+</code></pre>
+<ol start="5">
+<li>生成一个 string 对象，包含 n 个 c 字符</li>
+</ol>
+<pre><code class="language-c++">string(size_type n, char c);
+</code></pre>
+<ol start="6">
+<li>以区间 [first, last) 内的字符创建一个 string 对象</li>
+</ol>
+<pre><code class="language-c++">string(InputIt first, InputIt last); 
+// 相当于 string(static_cast&lt;size_type&gt;(first), static_cast&lt;size_type&gt;(second), alloc);
+</code></pre>
+<p>② <code>string</code> 与 C 风格字符串的转换</p>
+<pre><code class="language-c++">string str = &quot;hello&quot;;
+const char* cstr1 = str.c_str();
+const char* cstr2 = str.data(); // c_str() 和 data() 的底层实现相同
+</code></pre>
+<p>③ 元素遍历和存取</p>
+<ol>
+<li>使用运算符 [] 或 at() 访问</li>
+</ol>
+<pre><code class="language-c++">
+</code></pre>
 
             </div>
             
