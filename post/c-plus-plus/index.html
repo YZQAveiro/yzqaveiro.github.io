@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://yzqaveiro.github.io/favicon.ico?v=1651041311866">
+<link rel="shortcut icon" href="https://yzqaveiro.github.io/favicon.ico?v=1651041762726">
 <link rel="stylesheet" href="https://yzqaveiro.github.io/styles/main.css">
 
 
@@ -40,7 +40,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://yzqaveiro.github.io">
-        <img src="https://yzqaveiro.github.io/images/avatar.png?v=1651041311866" class="site-logo">
+        <img src="https://yzqaveiro.github.io/images/avatar.png?v=1651041762726" class="site-logo">
         <h1 class="site-title">YZQAveiro</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -385,7 +385,14 @@ const char* cstr2 = str.data(); // c_str() 和 data() 的底层实现相同
 <ol>
 <li>使用运算符 [] 或 at() 访问</li>
 </ol>
-<pre><code class="language-c++">
+<pre><code class="language-c++">reference operator[]( size_type pos );// 返回下标为 pos 的元素
+const_reference operator[]( size_type pos ) const;
+reference at( size_type pos );// 返回下标为 pos 的元素
+const_reference at( size_type pos ) const;
+
+// 示例
+string str = &quot;hello&quot;;
+cout &lt;&lt; str[0] &lt;&lt; &quot; &quot; &lt;&lt; str.at(1) &lt;&lt; endl; // h e
 </code></pre>
 
             </div>
