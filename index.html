@@ -163,8 +163,26 @@ var app = new Vue({
 <html>
 <head>
     <title>YOU ARE HACKED!</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        #fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
-    <video src="media/nvgyu.mp4" autoplay muted controls loop style="width:100%; height:auto;"></video>
+    <video id="fullscreen-video" src="media/nvgyu.mp4" autoplay muted controls loop></video>
 </body>
 </html>
